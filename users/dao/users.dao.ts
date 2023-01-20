@@ -24,8 +24,8 @@ class UsersDao {
         return this.users;
     }
 
-    async getUser(userId: string) {
-        this.users.find((user) => user.id === userId);
+    async getUserById(userId: string) {
+        return this.users.find((user) => user.id === userId);
     }
 
     async putUserById(userId: string, user: PutUserDto) {
@@ -68,6 +68,17 @@ class UsersDao {
         return `${userId} removed`;
     }
 
+    async getUserByEmail(email: string) {
+        const objIndex = this.users.findIndex(
+            (obj: { email: string }) => obj.email === email
+        );
+        let currentUser = this.users[objIndex];
+        if (currentUser) {
+            return currentUser;
+        } else {
+            return null;
+        }
+    }
 }
 
 export default new UsersDao();
