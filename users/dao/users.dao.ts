@@ -30,7 +30,7 @@ class UsersDao {
 
     async putUserById(userId: string, user: PutUserDto) {
         const objIndex = this.users.findIndex(
-            (obj: { id: string }) => obj.id === userId
+            (obj) => obj.id === userId
         );
 
         this.users.splice(objIndex, 1, user);
@@ -39,7 +39,7 @@ class UsersDao {
 
     async patchUserById(userId: string, user: PatchUserDto) {
         const objIndex = this.users.findIndex(
-            (obj: { id: string }) => obj.id === userId
+            (obj) => obj.id === userId
         );
         let currentUser = this.users[objIndex];
 
