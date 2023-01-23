@@ -7,6 +7,8 @@ import debug from 'debug';
 import mongoose from 'mongoose';
 import mongooseService from '../../common/services/mongoose.service';
 
+import { PermissionFlag } from '../../common/middleware/common.permissionflag.enum';
+
 const log: debug.IDebugger = debug('app:in-memory-dao');
 
 class UsersDao {
@@ -31,7 +33,7 @@ class UsersDao {
         let new_user = new this.User({
             ...user,
             _id: user_id,
-            permissionFlags: 1,
+            permissionFlags: PermissionFlag.FREE_PERMISSION,
         })
 
         await new_user.save();
