@@ -70,6 +70,12 @@ class UsersDao {
         let deleted_user = this.User.deleteOne({ _id: userId }).exec();
         return `user deleted ${deleted_user}`;
     }
+
+    async getUserEmailWithPassword(email: string) {
+        return this.User.findOne({ email: email })
+            .select('_id email parmissionFlags +password')
+            .exec();
+    }
 }
 
 export default new UsersDao();
